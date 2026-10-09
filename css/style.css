@@ -1,0 +1,985 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, sans-serif;
+}
+#space {
+    width: 100%;
+    height: 100%;
+}
+.mission-label {
+    position: fixed;
+    top: 30px;
+    left: 35px;
+    z-index: 10;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    color: white;
+    letter-spacing: 2px;
+}
+
+.mission-label span {
+    font-size: 11px;
+    opacity: 0.6;
+}
+
+.mission-label strong {
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.mission-label small {
+    font-size: 9px;
+    opacity: 0.5;
+    letter-spacing: 1px;
+}
+#location-labels {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.location-label {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    padding: 8px 12px;
+
+    border-left: 1px solid rgba(255, 255, 255, 0.7);
+
+    background: rgba(0, 0, 0, 0.35);
+
+    color: white;
+
+    font-family: monospace;
+
+    transform: translate(-50%, -120%);
+}
+
+.location-label strong {
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.location-label span {
+    font-size: 8px;
+    letter-spacing: 1px;
+    opacity: 0.55;
+}
+
+/* =========================
+   MISSION CONTROL HUD
+   ========================= */
+
+.hud {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+
+    pointer-events: none;
+
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+
+/* TOP AREA */
+
+.hud-top {
+    position: absolute;
+    top: 30px;
+    left: 35px;
+    right: 35px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.hud-kicker {
+    display: block;
+
+    font-family: monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+
+    opacity: 0.5;
+}
+
+.hud-top h1 {
+    margin-top: 5px;
+
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 5px;
+}
+
+.hud-top p {
+    margin-top: 5px;
+
+    font-family: monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+
+    opacity: 0.45;
+}
+
+
+/* SYSTEM STATUS */
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    font-family: monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+
+    opacity: 0.7;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+    background: white;
+
+    animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.25;
+    }
+}
+
+
+/* SIDE PANELS */
+
+.hud-panel {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 210px;
+
+    padding: 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    background: rgba(0, 0, 0, 0.25);
+
+    font-family: monospace;
+}
+
+.panel-left {
+    left: 35px;
+}
+
+.panel-right {
+    right: 35px;
+}
+
+
+/* PANEL TEXT */
+
+.panel-title {
+    font-size: 8px;
+    letter-spacing: 2px;
+
+    opacity: 0.4;
+}
+
+.hud-panel h2 {
+    margin-top: 8px;
+
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.hud-panel p {
+    margin-top: 5px;
+
+    font-size: 9px;
+    letter-spacing: 1px;
+
+    opacity: 0.55;
+}
+
+.panel-line {
+    width: 100%;
+    height: 1px;
+
+    margin: 18px 0;
+
+    background: rgba(255, 255, 255, 0.15);
+}
+
+
+/* MISSIONS */
+
+.mission-item {
+    display: flex;
+    gap: 12px;
+
+    margin-top: 16px;
+}
+
+.mission-item > span {
+    font-size: 9px;
+    opacity: 0.35;
+}
+
+.mission-item strong {
+    display: block;
+
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.mission-item small {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 7px;
+    letter-spacing: 1px;
+
+    opacity: 0.4;
+}
+
+
+/* BOTTOM NAVIGATION */
+
+.hud-nav {
+    pointer-events: auto;
+    position: absolute;
+
+    bottom: 30px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 35px;
+
+    padding: 12px 20px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    font-family: monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.hud-nav span {
+    opacity: 0.5;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.hud-nav span:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   EARTH TARGETING FRAME
+   ========================= */
+
+#space::before {
+    content: "";
+
+    position: fixed;
+
+    width: 360px;
+    height: 360px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+/* TARGETING CROSSHAIR */
+
+#space::after {
+    content: "+";
+
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    color: rgba(255, 255, 255, 0.4);
+
+    font-family: monospace;
+    font-size: 18px;
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   HUD CORNER BRACKETS
+   ========================= */
+
+.hud-corners {
+    position: absolute;
+    inset: 20px;
+
+    pointer-events: none;
+}
+
+.corner {
+    position: absolute;
+
+    width: 25px;
+    height: 25px;
+
+    opacity: 0.5;
+}
+
+
+/* TOP LEFT */
+
+.top-left {
+    top: 0;
+    left: 0;
+
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+}
+
+
+/* TOP RIGHT */
+
+.top-right {
+    top: 0;
+    right: 0;
+
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+}
+
+
+/* BOTTOM LEFT */
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+}
+
+
+/* BOTTOM RIGHT */
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+}
+
+
+/* =========================
+   TELEMETRY
+   ========================= */
+
+.telemetry {
+    position: absolute;
+
+    left: 50%;
+    top: calc(50% + 205px);
+
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 30px;
+
+    font-family: monospace;
+
+    text-align: center;
+}
+
+.telemetry div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.telemetry span {
+    font-size: 7px;
+    letter-spacing: 2px;
+
+    opacity: 0.35;
+}
+
+.telemetry strong {
+    font-size: 8px;
+    font-weight: 400;
+
+    letter-spacing: 1px;
+
+    opacity: 0.65;
+}
+
+
+/* =========================
+   COORDINATES
+   ========================= */
+
+.coordinates {
+    position: absolute;
+
+    left: 50%;
+    top: calc(50% - 215px);
+
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 20px;
+
+    font-family: monospace;
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+    opacity: 0.45;
+}
+/* =========================
+   SCAN LINE
+   ========================= */
+
+.hud::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 420px;
+    height: 1px;
+
+    transform: translate(-50%, -50%);
+
+    background: rgba(255, 255, 255, 0.12);
+
+    animation: scan 4s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+@keyframes scan {
+
+    0% {
+        transform:
+            translate(-50%, -190px);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    50% {
+        transform:
+            translate(-50%, 190px);
+        opacity: 0.5;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(-50%, -190px);
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   EARTH TARGETING SYSTEM
+   ========================= */
+
+.hud::before {
+    content: "";
+
+    position: absolute;
+
+    width: 390px;
+    height: 390px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+/* INNER TARGETING RING */
+
+.hud::after {
+    content: "";
+
+    position: absolute;
+
+    width: 340px;
+    height: 340px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    animation: targetRotate 25s linear infinite;
+}
+
+
+@keyframes targetRotate {
+
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+
+}
+
+/* =========================
+   ORBITAL TRAJECTORY
+   ========================= */
+
+.orbit-path {
+    position: absolute;
+
+    width: 470px;
+    height: 150px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%) rotate(-18deg);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+/* ORBIT MARKER */
+
+.orbit-marker {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    top: 0;
+    left: 0;
+
+    animation: orbitMove 8s linear infinite;
+}
+
+/* SPACECRAFT */
+
+.spacecraft {
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    top: 50%;
+    left: 0;
+
+    transform: translateY(-50%);
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 8px white,
+        0 0 18px rgba(255, 255, 255, 0.5);
+}
+
+
+/* SPACECRAFT LABEL */
+
+.spacecraft-label {
+    position: absolute;
+
+    top: calc(50% + 10px);
+    left: 12px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    font-family: monospace;
+
+    white-space: nowrap;
+}
+
+.spacecraft-label strong {
+    font-size: 8px;
+    font-weight: 400;
+
+    letter-spacing: 2px;
+}
+
+.spacecraft-label small {
+    font-size: 6px;
+
+    letter-spacing: 1px;
+
+    opacity: 0.45;
+}
+
+
+@keyframes orbitMove {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+/* =========================
+   ORBITAL TRAJECTORY
+   ========================= */
+
+.orbit-path {
+    position: absolute;
+
+    width: 470px;
+    height: 150px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%) rotate(-18deg);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+
+#contact-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 360px;
+    transform: translate(-50%, -50%) scale(0.9);
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    font-family: monospace;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 20;
+}
+
+#contact-panel.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+.contact-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.contact-header span {
+    font-size: 8px;
+    letter-spacing: 3px;
+    opacity: 0.4;
+}
+
+.contact-header strong {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    outline: none;
+    background: rgba(255, 255, 255, 0.03);
+    color: white;
+    font-family: monospace;
+    font-size: 11px;
+}
+
+#contact-form textarea {
+    height: 110px;
+    resize: none;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+#contact-form button {
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    color: white;
+    font-family: monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+#contact-form button:hover {
+    background: white;
+    color: black;
+}
+
+.info-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 460px;
+    max-width: calc(100vw - 40px);
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: translate(-50%, -50%) scale(0.9);
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    font-family: monospace;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+    z-index: 30;
+}
+
+.info-panel.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+.close-info {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.close-info:hover {
+    opacity: 1;
+}
+
+.info-kicker {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 8px;
+    letter-spacing: 3px;
+    opacity: 0.4;
+}
+
+.info-panel h2 {
+    margin-bottom: 25px;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.info-panel p {
+    margin-bottom: 18px;
+    font-size: 11px;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    opacity: 0.65;
+}
+
+.info-panel strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.info-panel small {
+    display: block;
+    margin-top: 5px;
+    font-size: 8px;
+    letter-spacing: 1px;
+    opacity: 0.4;
+}
+
+.info-line {
+    width: 100%;
+    height: 1px;
+    margin: 25px 0;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+
+/* MISSIONS */
+
+.info-item {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.info-item > span {
+    font-size: 9px;
+    opacity: 0.3;
+}
+
+
+/* SYSTEMS */
+
+.systems-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.systems-grid span {
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 9px;
+    letter-spacing: 1px;
+    opacity: 0.65;
+}
+
+
+/* TIMELINE */
+
+.timeline-item {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 28px;
+    padding-left: 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.timeline-item > span {
+    min-width: 65px;
+    font-size: 9px;
+    opacity: 0.4;
+}
+
+
+/* CONTACT */
+
+.contact-detail {
+    margin-bottom: 25px;
+}
+
+.contact-detail span {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 8px;
+    letter-spacing: 2px;
+    opacity: 0.35;
+}
+
+.contact-detail strong {
+    font-size: 12px;
+    letter-spacing: 1px;
+}

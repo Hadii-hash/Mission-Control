@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hadi | Mission Control</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div id="space"></div>
+
+
+    <div class="hud">
+
+        <!-- TOP HUD -->
+
+        <header class="hud-top">
+
+            <div>
+                <span class="hud-kicker">MISSION CONTROL</span>
+                <h1>HADI</h1>
+                <p>COMPUTER ENGINEERING · EPITECH PARIS</p>
+            </div>
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+                SYSTEM ONLINE
+            </div>
+
+        </header>
+
+
+        <!-- LEFT PANEL -->
+
+        <aside class="hud-panel panel-left">
+
+            <span class="panel-title">CURRENT STATION</span>
+
+            <h2>PARIS</h2>
+
+            <p>EPITECH PARIS</p>
+
+            <div class="panel-line"></div>
+
+            <span class="panel-title">ORIGIN POINT</span>
+
+            <p>ISLAMABAD, PAKISTAN</p>
+
+        </aside>
+
+
+        <!-- RIGHT PANEL -->
+
+        <aside class="hud-panel panel-right">
+
+            <span class="panel-title">ACTIVE MISSIONS</span>
+
+            <div class="mission-item">
+
+                <span>01</span>
+
+                <div>
+                    <strong>STUDYSYNC</strong>
+                    <small>OPERATIONAL</small>
+                </div>
+
+            </div>
+
+
+            <div class="mission-item">
+
+                <span>02</span>
+
+                <div>
+                    <strong>ROBOT VISION</strong>
+                    <small>ACTIVE DEVELOPMENT</small>
+                </div>
+
+            </div>
+
+
+            <div class="mission-item">
+
+                <span>03</span>
+
+                <div>
+                    <strong>JUNCTION 2026</strong>
+                    <small>FINLAND · UPCOMING</small>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="hud-nav">
+
+    <span data-panel="about-panel">ABOUT</span>
+    <span data-panel="missions-panel">MISSIONS</span>
+    <span data-panel="systems-panel">SYSTEMS</span>
+    <span data-panel="timeline-panel">TIMELINE</span>
+    <span data-panel="contact-info-panel">CONTACT</span>
+
+</nav>
+
+
+        <!-- HUD CORNER BRACKETS -->
+
+        <div class="hud-corners">
+
+            <span class="corner top-left"></span>
+            <span class="corner top-right"></span>
+            <span class="corner bottom-left"></span>
+            <span class="corner bottom-right"></span>
+
+        </div>
+
+
+        <!-- TELEMETRY -->
+<div class="telemetry">
+
+    <div>
+        <span>ALT</span>
+        <strong>LOW ORBIT</strong>
+    </div>
+
+    <div>
+        <span>SYS</span>
+        <strong>3D-EARTH</strong>
+    </div>
+
+    <div>
+        <span>ROT</span>
+        <strong>0.001°/F</strong>
+    </div>
+
+    <div>
+        <span>NET</span>
+        <strong>ONLINE</strong>
+    </div>
+
+</div>
+
+
+<div class="coordinates">
+
+    <span>LAT 48.8566° N</span>
+    <span>LON 02.3522° E</span>
+
+</div>
+
+
+<div class="orbit-path">
+
+    <div class="orbit-marker">
+        <span></span>
+    </div>
+
+</div>
+
+
+        <!-- COORDINATES -->
+
+        <div class="coordinates">
+
+            <span>LAT 48.8566° N</span>
+            <span>LON 02.3522° E</span>
+
+        </div>
+        
+
+    </div>
+
+    <!-- ABOUT -->
+
+<div class="info-panel" id="about-panel">
+
+    <button class="close-info">×</button>
+
+    <span class="info-kicker">PERSONNEL FILE / 001</span>
+
+    <h2>ABOUT HADI</h2>
+
+    <p>
+        Computer Engineering student currently studying at EPITECH Paris,
+        with a strong interest in robotics, artificial intelligence,
+        embedded systems and computer vision.
+    </p>
+
+    <p>
+        I build projects that combine software, hardware and AI,
+        from computer vision systems to full-stack applications
+        and autonomous robotics.
+    </p>
+
+    <div class="info-line"></div>
+
+    <span class="info-kicker">CURRENT STATUS</span>
+
+    <strong>COMPUTER ENGINEERING STUDENT</strong>
+
+    <small>EPITECH PARIS · DIGITAL INNOVATION TRACK</small>
+
+</div>
+
+
+<!-- MISSIONS -->
+
+<div class="info-panel" id="missions-panel">
+
+    <button class="close-info">×</button>
+
+    <span class="info-kicker">MISSION DATABASE</span>
+
+    <h2>ACTIVE MISSIONS</h2>
+
+    <div class="info-item">
+        <span>01</span>
+        <div>
+            <strong>STUDYSYNC</strong>
+            <small>AI-POWERED STUDY PLATFORM</small>
+        </div>
+    </div>
+
+    <div class="info-item">
+        <span>02</span>
+        <div>
+            <strong>ROBOT VISION</strong>
+            <small>YOLO · OPENCV · COMPUTER VISION</small>
+        </div>
+    </div>
+
+    <div class="info-item">
+        <span>03</span>
+        <div>
+            <strong>JUNCTION 2026</strong>
+            <small>HELSINKI · HACKATHON</small>
+        </div>
+    </div>
+
+    <div class="info-item">
+        <span>04</span>
+        <div>
+            <strong>ROBOTICS SYSTEMS</strong>
+            <small>AUTONOMOUS CONTROL · EMBEDDED SYSTEMS</small>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- SYSTEMS -->
+
+<div class="info-panel" id="systems-panel">
+
+    <button class="close-info">×</button>
+
+    <span class="info-kicker">SYSTEMS DATABASE</span>
+
+    <h2>TECHNICAL SYSTEMS</h2>
+
+    <div class="systems-grid">
+
+        <span>PYTHON</span>
+        <span>C++</span>
+        <span>JAVA</span>
+        <span>JAVASCRIPT</span>
+        <span>HTML / CSS</span>
+        <span>REACT</span>
+        <span>NODE.JS</span>
+        <span>DOCKER</span>
+        <span>DEVOPS</span>
+        <span>ROS2</span>
+        <span>OPENCV</span>
+        <span>YOLO</span>
+        <span>GIT / GITHUB</span>
+        <span>EMBEDDED SYSTEMS</span>
+        <span>ROBOTICS</span>
+        <span>AI / ML</span>
+
+    </div>
+
+</div>
+
+
+<!-- TIMELINE -->
+
+<div class="info-panel" id="timeline-panel">
+
+    <button class="close-info">×</button>
+
+    <span class="info-kicker">MISSION TIMELINE</span>
+
+    <h2>EDUCATION & JOURNEY</h2>
+
+    <div class="timeline-item">
+
+        <span>2025</span>
+
+        <div>
+            <strong>BS COMPUTER ENGINEERING</strong>
+            <small>FAST-NUCES · ISLAMABAD</small>
+        </div>
+
+    </div>
+
+    <div class="timeline-item">
+
+        <span>SEP 2026</span>
+
+        <div>
+            <strong>EPITECH PARIS</strong>
+            <small>DIGITAL INNOVATION TRACK · PARIS, FRANCE</small>
+        </div>
+
+    </div>
+
+    <div class="timeline-item">
+
+        <span>2026</span>
+
+        <div>
+            <strong>ROBOTICS & AI DEVELOPMENT</strong>
+            <small>COMPUTER VISION · AUTOMATION · AI WORKFLOWS</small>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- CONTACT INFO -->
+
+<div class="info-panel" id="contact-info-panel">
+
+    <button class="close-info">×</button>
+
+    <span class="info-kicker">COMMUNICATION CHANNEL</span>
+
+    
+<h2>CONTACT</h2>
+
+<p class="contact-instruction">
+    Click the satellite to connect.
+</p>
+
+<div class="contact-detail">
+    <span>EMAIL</span>
+    <strong>abdulhadi7961@gmail.com</strong>
+</div>
+
+<div class="contact-detail">
+    <span>PHONE</span>
+    <strong>+33 7 58 72 43 30</strong>
+</div>
+
+    <div class="info-line"></div>
+
+    <span class="info-kicker">STATUS</span>
+
+    <small>AVAILABLE FOR COLLABORATION · PROJECTS · ROBOTICS · AI</small>
+
+</div>
+
+    <!-- EARTH LOCATION LABELS -->
+
+    <div id="location-labels">
+
+        <div class="location-label" id="paris-label">
+            <strong>PARIS</strong>
+            <span>EPITECH PARIS</span>
+        </div>
+
+        <div class="location-label" id="islamabad-label">
+            <strong>ISLAMABAD</strong>
+            <span>ORIGIN POINT</span>
+        </div>
+
+        <div class="location-label" id="finland-label">
+            <strong>FINLAND</strong>
+            <span>JUNCTION 2026</span>
+        </div>
+
+    </div>
+
+    <div id="contact-panel">
+<button id="close-contact">×</button>
+    <div class="contact-header">
+        <span>COMMUNICATION LINK</span>
+        <strong>TRANSMISSION READY</strong>
+    </div>
+
+    <form id="contact-form">
+
+        <input
+            type="text"
+            placeholder="YOUR NAME"
+            required
+        >
+
+        <input
+            type="email"
+            placeholder="YOUR EMAIL"
+            required
+        >
+
+        <textarea
+            placeholder="MESSAGE"
+            required
+        ></textarea>
+        
+        <p id="transmission-status" aria-live="polite"></p>
+
+        <button type="submit">
+            SEND TRANSMISSION
+        </button>
+
+    </form>
+
+</div>
+
+    <script type="module" src="js/script.js"></script>
+
+</body>
+</html>
